@@ -1,6 +1,7 @@
 # Practical_Ethical_Hacker_Cheatsheet
 ## Information Gathering (Reconnaissance)
 ### Discovering Email Addresses
+
 ### Discover Credentials with Dehashed
 ### Discover Subdomains
 ### Utilizing Social Media
