@@ -1,6 +1,16 @@
 # Practical_Ethical_Hacker_Cheatsheet
 ## Information Gathering (Reconnaissance)
 ### Discovering Email Addresses
+  1. Ientify Emails with
+        * hunter.io
+        * phonebook.cz
+        * Voilanorbert.com
+        * clearbit Chrome Extension
+    
+  2. Verify the email
+        * Verifyemailaddress.io
+        * email-checker.net/validate
+        * Check with password resets
 
 ### Discover Credentials with Dehashed
 ### Discover Subdomains
