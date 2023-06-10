@@ -32,8 +32,9 @@
   whatweb <webpage>
   ```
 
-### Information Gathering with Burp Suite
 ### Utilizing Social Media
+  1. Seach LinkedIn for employees, jobs, pictures
+  2. From the employees, seach them on other platforms for information leakage
 
 ## Scanning and Enumeration
 ### Scanning with Nmap
