@@ -35,7 +35,11 @@
 ### Utilizing Social Media
   1. Seach LinkedIn for employees, jobs, pictures
   2. From the employees, seach them on other platforms for information leakage
+  3. If an organization has a lot of employees try the following password formats
 
+      * \<Season>\<Year>\<Special Character>
+      * \<CompanyName>\<Numbers>\<Special Character>
+  
 ## Scanning and Enumeration
 ### Scanning with Nmap
 ### Enumerating HTTP and HTTPS
