@@ -13,7 +13,26 @@
         * Check with password resets
 
 ### Discover Credentials with Dehashed
+  1. Search for Breached Credentials with Dehashed.com
+  2. if we find a hash we have search it on google or hashed.com to see if its cracked.
+
 ### Discover Subdomains
+  1. Use sublist3r
+  ```bash
+  sublist3r -d <target.domain>
+  ```
+  2. Check crt.sh
+  3. Use HTTPProbe to verify the subdomain is alive
+
+### Discover Website Technologies
+  1. Use builtwith.com
+  2. Use the wappalyzer extension
+  3. use whatweb
+  ```bash
+  whatweb <webpage>
+  ```
+
+### Information Gathering with Burp Suite
 ### Utilizing Social Media
 
 ## Scanning and Enumeration
