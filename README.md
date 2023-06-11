@@ -43,10 +43,14 @@
 ## Scanning and Enumeration
 ### Scanning for Alive Hosts
   ```shell
-  netdiscover -r <network>
+  netdiscover -r #{network}
   arp-scan -l
   ```
 ### Scanning with Nmap
+#### Stealth Scan
+  ```sh
+  nmap -T4 -p- -A #{target}
+  ```
 ### Enumerating HTTP and HTTPS
 ### Enumerating SMB
 ### Enumerating SSH
