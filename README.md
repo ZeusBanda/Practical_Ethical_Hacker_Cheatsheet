@@ -49,9 +49,27 @@
 ### Scanning with Nmap
 #### Stealth Scan
   ```sh
-  nmap -T4 -p- -A #{target}
+  nmap -T4 -p- -A #{target} -oA TCP_Stealth_Scan
   ```
-### Enumerating HTTP and HTTPS
+  ```sh
+  nmap -sU -T4 ${target} -oA UDP_Scan
+  ```
+  
+### Initial HTTP and HTTPS Enumeration
+  1. If you see port 80 or 443 go to the website.
+  2. Navigate the webpage to see if we can find the version of the server and the hostname
+  3. Run a nikto scan
+  ```sh
+  nikto -h #{target} > nikto_scan.txt
+  ```
+  5. Enumerate directories start with the small directory list and escalate if nothing is found.
+  ```sh
+  dirbuster&
+  ```
+  6. View the source code for comments such as credentials and keys
+  7. Intercept traffic with burp suite for information disclosure
+  8. Check Wappalyzer
+
 ### Enumerating SMB
 ### Enumerating SSH
 
