@@ -71,6 +71,17 @@
   8. Check Wappalyzer
 
 ### Enumerating SMB
+  1. Find the smb version
+  * You can enumerate with metasploit module = auxiliary/scanner/smb/smb_version
+  2. Enumerate the Shares
+  ```sh
+  smbclient -L \\\\#{target}\\
+  ```
+  ```sh
+  smbclient \\\\<#{target}\\${share}
+  ```
+  
+  4.  
 ### Enumerating SSH
 
 ## Vulnerability Scanning with Nessus
