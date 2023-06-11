@@ -41,6 +41,11 @@
       * \<CompanyName>\<Numbers>\<Special Character>
   
 ## Scanning and Enumeration
+### Scanning for Alive Hosts
+  ```shell
+  netdiscover -r <network>
+  arp-scan -l
+  ```
 ### Scanning with Nmap
 ### Enumerating HTTP and HTTPS
 ### Enumerating SMB
