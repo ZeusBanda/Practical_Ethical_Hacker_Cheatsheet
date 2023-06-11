@@ -80,9 +80,21 @@
   ```sh
   smbclient \\\\<#{target}\\${share}
   ```
-  
-  4.  
+
 ### Enumerating SSH
+  1. Get the SSH version from nmap
+  2. Attempt to SSH
+  ```sh
+  ssh #{target}
+  ```
+  If we get a "no matching key exchange method found" error add it with:
+  ```sh
+  ssh #{target} -oKexAlgorithms=+#{key_exchange}
+  ```
+  If we then get a "no cipher found add it:
+  ```sh
+  ssh #{target} -oKexAlgorithms=+#{key_exchange} -c #{cipher>
+  ```
 
 ## Vulnerability Scanning with Nessus
 ### Scanning with Nessus
