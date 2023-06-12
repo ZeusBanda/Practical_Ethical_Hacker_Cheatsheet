@@ -100,10 +100,42 @@
   2. If there is something found, it is worth noting down
   3. After all potential vulnerabilities are found try them to see what works.
 
-## Vulnerability Scanning with Nessus
+## Vulnerability Scanning
 ### Scanning with Nessus
+  1. Settings to use
+    * Select Targets
+    * Set up the email
+    * Discovery > Scan type: Port Scan (All Ports)
+    * Assessment > Scan Type: Known Web Vulnerabilities
+
+### Scanning with Nmap
+  ```sh
+  nmap -T4 -p- -a --script vuln #{target}
+  ```
 
 ## Exploitation Basics
+### Basic Password Attacks
+#### Metasploit
+  1. Search for protocol log in script
+  2. Set it up
+  3. run it
+
+#### Hydra
+  ```sh
+  hydra -l/-L ${user/User_list} -p/-P ${pass/pass_list} #{protocol}//#{target} -t #{threads} 
+  ```
+
+### Credential Stuffing
+  1. if we have breached credentials we can use them against the target.
+  2. Open Burp Suite to capture the traffic of a log in
+  3. Set up intruder to change the username and password
+  4. Run the attack and stop it
+  5. Grep for an error code
+  6. Rerun the attack and sort by the grep
+  
+  Note: Weak Password Policies could come into play attempt passwords with:
+  
+
 
 
 ## Attacking AD: Initial Attack Vectors
