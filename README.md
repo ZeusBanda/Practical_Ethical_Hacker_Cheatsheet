@@ -211,8 +211,38 @@
   5. Think Outside Box   
 
 ## Attacking AD: Post-Compromise Enumeration
-
 ### Domain Enumeration with Powerview
+  1. Transfer PowerView.ps1 to the compromised machine
+  2. start powershell and use PowerView.ps1
+  ```cmd
+  powershell -ep bypass
+  . .\PowerView.ps1
+  ```
+  3. Perform Enumeration
+  ```powershell
+  Get-NetDOmain
+  Get-NetDomainController
+  Get-DomainPolicy
+  (Get-DomainPolicy)."system access"
+  Get-NetUser
+  Get-NetUser | select cn
+  Get-NetUser | select samusername
+  Get-NetUser | select description
+  Get-UserProperty -Properties pwdlastset
+  Get-UserProperty -Properties logoncount
+  Get-UserProperty -Properties badpwdcount
+  Get-NetComputer
+  Get-NetComputer -FullData
+  Get-NetComputer -FullData | select OperatingSystem
+  Get-NetGroup
+  Get-NetGroup -GroupName "Domain Admins"
+  Get-NetGroup -GroupName *admin*
+  Get-NetGroupMember -GroupName "Domain Admins"
+  Invoke-ShareFinder
+  Get-NetGPO
+  Get-NetGPO | select displayname, whenchanged
+  ```
+  4. 
 ### Domain Enumeration with Bloodhound
 
 ## Attacking AD: Post-Compromise Attacks
