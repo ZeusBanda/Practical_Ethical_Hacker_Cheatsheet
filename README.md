@@ -95,6 +95,10 @@
   ```sh
   ssh #{target} -oKexAlgorithms=+#{key_exchange} -c #{cipher>
   ```
+### Research Possible Vulnerabilities
+  1. Search the versions + exploits in google and searchsploit
+  2. If there is something found, it is worth noting down
+  3. After all potential vulnerabilities are found try them to see what works.
 
 ## Vulnerability Scanning with Nessus
 ### Scanning with Nessus
