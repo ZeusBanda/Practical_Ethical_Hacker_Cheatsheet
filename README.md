@@ -134,6 +134,11 @@
   6. Rerun the attack and sort by the grep
   
   Note: Weak Password Policies could come into play attempt passwords with:
+    * ${season}${year}${special character}
+    * ${company}{special character}
+    * Password123 
+    * Password1!
+    
   
 
 
