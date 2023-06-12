@@ -258,9 +258,9 @@
   ```
   4. Transfer the data into BloodHound
   5. Analyze the data in queries
-    *  Find all DOmain Admins
-    *  Find Shortest Path to Domain Admins
-    *  Shortest path to Kerberoastable Users
+  *  Find all Domain Admins
+  *  Find Shortest Path to Domain Admins
+  *  Shortest path to Kerberoastable Users
 
 ## Attacking AD: Post-Compromise Attacks
 ### Pass the password with Crackmapexec
