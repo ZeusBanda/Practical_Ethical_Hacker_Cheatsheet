@@ -242,8 +242,25 @@
   Get-NetGPO
   Get-NetGPO | select displayname, whenchanged
   ```
-  4. 
+  
 ### Domain Enumeration with Bloodhound
+  1. Start bloodhound
+  ```sh
+  neo4j&
+  bloodhound&
+  ```
+  2. Get SharpHound.ps1 on a compromised asset.
+  3. Start Powershell and collect the data
+  ```powershell
+  powershell -ep bypass
+  . .\SharpHound.ps1
+  Invoke-BloodHound -CollectionMethod All -Domain <domain.local> -ZipFIleName file.zip
+  ```
+  4. Transfer the data into BloodHound
+  5. Analyze the data in queries
+    *  Find all DOmain Admins
+    *  Find Shortest Path to Domain Admins
+    *  Shortest path to Kerberoastable Users
 
 ## Attacking AD: Post-Compromise Attacks
 ### Pass the password with Crackmapexec
