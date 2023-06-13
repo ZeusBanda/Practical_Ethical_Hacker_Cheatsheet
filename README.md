@@ -368,7 +368,4 @@ secretsdump.py <domain>/<user>:<password>@<IP>
 ### File Transfers
 ### 
 
-## Web Application Enumeration, Revisited
 ## Testing the Top 10 Web Application Vulnerabilities
-## Wireless Penetration Testing
-
